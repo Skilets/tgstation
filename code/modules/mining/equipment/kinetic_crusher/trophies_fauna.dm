@@ -138,7 +138,7 @@
 
 /obj/item/crusher_trophy/brimdemon_fang/on_mark_detonation(mob/living/target, mob/living/user)
 	. = ..()
-	target.balloon_alert_to_viewers("[pick(comic_phrases)]!")
+	target.loc.balloon_alert_to_viewers("[pick(comic_phrases)]!")
 	playsound(target, 'sound/mobs/non-humanoids/brimdemon/brimdemon_crush.ogg', 100)
 
 // Bileworm
@@ -231,7 +231,7 @@
 	for(var/i in 1 to summon_amount)
 		var/turf/drop_off = find_dropoff_turf(target, user)
 		var/mob/living/basic/mining/demon_afterimage/crusher/friend = new(drop_off)
-		friend.faction = list(FACTION_NEUTRAL)
+		friend.set_faction(list(FACTION_NEUTRAL))
 		friend.befriend(user)
 		friend.ai_controller?.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, target)
 	COOLDOWN_START(src, summon_cooldown, 30 SECONDS)
