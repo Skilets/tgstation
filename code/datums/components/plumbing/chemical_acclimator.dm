@@ -1,7 +1,6 @@
 /datum/component/plumbing/acclimator
 	demand_connects = WEST
 	supply_connects = EAST
-	var/obj/machinery/plumbing/acclimator/myacclimator
 
 /datum/component/plumbing/acclimator/Initialize(ducting_layer)
 	if(!istype(parent, /obj/machinery/plumbing/acclimator))
@@ -15,6 +14,7 @@
 			. = ..()
 			if(!reagents.holder_full())
 				return
+		reagents.flags &= ~NO_REACT
 		myacclimator.acclimate_state = reagents.chem_temp > myacclimator.target_temperature ? AC_COOLING : AC_HEATING
 		myacclimator.update_appearance(UPDATE_ICON_STATE)
 
